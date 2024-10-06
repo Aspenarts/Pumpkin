@@ -26,13 +26,6 @@ public class PumpkinSpawner : MonoBehaviour
         }
     }
 
-    public void OnDrawGizmos()
-    {
-        Gizmos.matrix = Matrix4x4.identity;
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(bgBounds.center, bgBounds.extents * 2);
-    }
-
     // Update is called once per frame
     void Update()
     {
