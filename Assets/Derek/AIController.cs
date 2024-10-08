@@ -1,22 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
     private StateMachine stateMachine;
-    public GameObject player; // Assign this in the inspector or programmatically
-    public float patrolRadius = 10f; // Set patrol radius in the Inspector
+    public GameObject player; // Assign the player GameObject in the Inspector
+    private PatrolState patrolState;
 
     private void Start()
     {
         stateMachine = new StateMachine();
-        PatrolState patrolState = new PatrolState(gameObject, player, patrolRadius);
+
+        // Initialize PatrolState with only the owner (enemy) and player arguments
+        patrolState = new PatrolState(gameObject, player);
+
+        // Set the patrol state as the starting state
         stateMachine.SetState(patrolState);
     }
 
     private void Update()
     {
+        // Update the state machine every frame
         stateMachine.Update();
     }
 }

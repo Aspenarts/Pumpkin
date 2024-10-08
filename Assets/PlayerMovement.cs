@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     {
         dirX = Input.GetAxisRaw("Horizontal");
         dirY = Input.GetAxisRaw("Vertical");
-        print(rb.velocity);
         rb.velocity = new Vector2(dirX, dirY).normalized * speed;
     }
 }
