@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementDetector : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Vector3 lastPosition;
+    public bool isMoving = false;
+
     void Start()
     {
-        
+        lastPosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Check if the object has moved
+        if (transform.position != lastPosition)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+        lastPosition = transform.position;
     }
 }
