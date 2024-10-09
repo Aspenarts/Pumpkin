@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1887303087837236682}
   - component: {fileID: 2855658967823028437}
   - component: {fileID: 1874093010495038526}
+  - component: {fileID: -5317824437810374617}
   m_Layer: 0
   m_Name: tempPumpkin
   m_TagString: Untagged
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &1874093010495038526
 CircleCollider2D:
@@ -117,6 +118,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.027234077, y: 0}
   serializedVersion: 2
-  m_Radius: 1.6
+  m_Radius: 1.1914952
+--- !u!114 &-5317824437810374617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8907368601974897694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f95ea066b5636346893fef48f3544ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritemask: {fileID: 4761058263551146207, guid: efeba0827166efc45997e57078841250, type: 3}
