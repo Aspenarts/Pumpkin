@@ -8,23 +8,23 @@ public class PumpkinController : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     private Vector2 moveDirection;
     private Rigidbody2D rb;
-    private Quaternion rotation;
     [SerializeField] private float rotationSpeed = 10f;
+
+    // This doesn't actually affect the pumpkin
+    // Temp code for previous stuff
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void RotateDirection(){
-        transform.Rotate(0,0,moveDirection.x);
-    }
-
-    private void isMoving(){
-        
+        transform.Rotate(0,0,moveDirection.x*rotationSpeed);
     }
     void Update()
     {
-        moveDirection = transform.forward;
-        RotateDirection();
+        if(rb.velocity != Vector2.zero){
+            moveDirection = rb.velocity;
+            RotateDirection();
+        }
     }
 }
