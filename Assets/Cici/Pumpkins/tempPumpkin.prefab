@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027234077, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.1914952
+  m_Radius: 0.1947439
 --- !u!114 &-5317824437810374617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spritemask: {fileID: 4761058263551146207, guid: efeba0827166efc45997e57078841250, type: 3}
+  fadeTime: 0.5
