@@ -10,8 +10,6 @@ public class PumpkinController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float rotationSpeed = 10f;
 
-    // This doesn't actually affect the pumpkin
-    // Temp code for previous stuff
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,6 +17,7 @@ public class PumpkinController : MonoBehaviour
 
     private void RotateDirection(){
         transform.Rotate(0,0,moveDirection.x*rotationSpeed);
+        transform.Rotate(0,0,moveDirection.y*rotationSpeed);
     }
     void Update()
     {
