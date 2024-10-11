@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PumpkinPopIn : MonoBehaviour
+public class PopIn : MonoBehaviour
 {
     public SpriteMask spritemask;
     public float fadeTime = 0.25f;
