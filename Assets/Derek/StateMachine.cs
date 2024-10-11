@@ -1,31 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class StateMachine
 {
     private State currentState;
 
-    public void Update()
+    public void SetState(State newState)
     {
-        // Update current state
-        currentState?.OnUpdate();
-
-        // Check for transitions and move to a new state if necessary
-        foreach (var transition in currentState.GetTransitions())
+        if (currentState != null)
         {
-            if (transition.ShouldTransition())
-            {
-                SetState(transition.GetNextState());
-                break;
-            }
+            currentState.OnExit();
+        }
+
+        currentState = newState;
+
+        if (currentState != null)
+        {
+            currentState.OnEnter();
         }
     }
 
-    public void SetState(State newState)
+    public void Update()
     {
-        currentState?.OnExit();
-        currentState = newState;
-        currentState?.OnEnter();
+        if (currentState != null)
+        {
+            // Check transitions before updating the current state
+            foreach (Transition transition in currentState.GetTransitions())
+            {
+                if (transition.ShouldTransition())
+                {
+                    SetState(transition.GetNextState());
+                    return;
+                }
+            }
+
+            // Update the current state
+            currentState.OnUpdate();
+        }
     }
 }
