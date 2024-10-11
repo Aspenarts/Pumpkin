@@ -1,29 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class PlayerSpottedTransition : Transition
 {
-    private GameObject player;
+    private GameObject player;  // Reference to the player
+    private GameObject owner;   // Reference to the enemy (goose)
+    private VisionCone visionCone; // Reference to the vision cone component
 
-    // Constructor that takes two arguments: owner and player
     public PlayerSpottedTransition(GameObject owner, GameObject player) : base(owner)
     {
+        this.owner = owner;
         this.player = player;
+        this.visionCone = owner.GetComponent<VisionCone>(); // Get the vision cone component from the enemy
     }
 
     public override bool ShouldTransition()
     {
-        // Check if the player exists
-        if (player == null) return false;
+        // Check if the player is inside the vision cone and moving
+        if (player != null && visionCone.IsTargetInVision(player))
+        {
+            MovementDetector movementDetector = player.GetComponent<MovementDetector>();
 
-        // Transition to attack if the player is within a certain distance
-        return Vector3.Distance(owner.transform.position, player.transform.position) < 10f;
+            // Check if the player is moving
+            if (movementDetector != null && movementDetector.isMoving)
+            {
+                Debug.Log("Player Spotted Transition.");
+
+                return true; // Player is in the vision cone and moving, so transition to attack state
+            }
+        }
+
+        return false; // No transition if player isn't in the cone or isn't moving
     }
 
     public override State GetNextState()
     {
-        // Return the next state (e.g., AttackState)
-        return new AttackState(owner);
+        // Transition to the AttackState and pass both owner and player
+        return new AttackState(owner, player);
     }
 }

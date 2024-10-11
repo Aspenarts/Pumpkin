@@ -11,12 +11,16 @@ public class PatrolState : State
     public float speed = 10f;
     public float patrolRadius = 50f; // Patrol radius for random roaming
     private GameObject player; // Reference to the player
+    private GameObject pumpkin;
+    private VisionCone visionCone; // Reference to the VisionCone component
 
-    public PatrolState(GameObject owner, GameObject player) : base(owner)
+    public PatrolState(GameObject owner, GameObject player, GameObject pumpkin) : base(owner)
     {
         seeker = owner.GetComponent<Seeker>();
         rb = owner.GetComponent<Rigidbody2D>();
         this.player = player; // Assign the player reference
+        this.pumpkin = pumpkin;
+        this.visionCone = owner.GetComponent<VisionCone>(); // Get the vision cone component
     }
 
     public override void OnEnter()
@@ -30,22 +34,24 @@ public class PatrolState : State
         // Ensure the path is valid
         if (path == null || path.vectorPath == null || path.vectorPath.Count == 0)
         {
-            // No valid path, return early
-            return;
-        }
-
-        // Check if the current waypoint index is within the valid range
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            // Reached the end of the path, request a new path immediately
-            MoveToRandomPoint();
-            return;
+            return; // No valid path
         }
 
         // Move towards the next waypoint
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            MoveToRandomPoint(); // Recalculate path if reached the last waypoint
+            return;
+        }
+
+        // Calculate movement direction to the next waypoint
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
         rb.MovePosition(rb.position + force);
+
+        // Check if the enemy is moving left or right and update vision cone direction
+        bool isMovingRight = direction.x > 0;
+        visionCone.SetFacingDirection(isMovingRight);
 
         // Check if the enemy is close enough to the current waypoint to move to the next one
         if (Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]) < 0.2f)
@@ -53,9 +59,6 @@ public class PatrolState : State
             currentWaypoint++;
         }
     }
-
-
-
 
     public override void OnExit()
     {
@@ -65,15 +68,20 @@ public class PatrolState : State
 
     public override List<Transition> GetTransitions()
     {
-        // Return a list of possible transitions, such as transitioning to a chase state if the player is spotted
-        return new List<Transition> { new PlayerSpottedTransition(owner, player) };
+        // Return both PlayerSpottedTransition and PumpkinSpottedTransition
+        return new List<Transition>
+    {
+        new PlayerSpottedTransition(owner, player),
+        new PumpkinSpottedTransition(owner, pumpkin)
+    };
     }
+
 
     private void MoveToRandomPoint()
     {
         // Generate a random point within a 2D circle
         Vector3 randomDirection = Random.insideUnitCircle * patrolRadius;
-        randomDirection += owner.transform.position; // Offset from the enemy's current position
+        randomDirection += Vector3.zero; // Fixed patrol around (0,0)
 
         // Request a path to the random point
         seeker.StartPath(rb.position, randomDirection, OnPathComplete);
