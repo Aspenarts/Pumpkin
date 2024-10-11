@@ -16,8 +16,9 @@ public class PumpkinController : MonoBehaviour
     }
 
     private void RotateDirection(){
-        transform.Rotate(0,0,moveDirection.x*rotationSpeed);
-        transform.Rotate(0,0,moveDirection.y*rotationSpeed);
+        // Rotate pumpkin towards moving direction
+        transform.Rotate(0,0,-moveDirection.x*rotationSpeed);
+        transform.Rotate(0,0,-moveDirection.y*rotationSpeed);
     }
     void Update()
     {
