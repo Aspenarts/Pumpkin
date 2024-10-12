@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public float pumpkinOffset = 2f;
+
     [SerializeField] private float interactDistance = 1.5f;
     [SerializeField] private LayerMask layerToCheck;
     [SerializeField] private bool hasPumpkin = false;
@@ -31,7 +33,6 @@ public class PlayerInteraction : MonoBehaviour
                 grabbedPumpkin = rayCheck.collider.gameObject;
                 if(!hasPumpkin){
                     // Physics update when grabbed
-                    
                     grabbedPumpkin.GetComponent<Rigidbody2D>().isKinematic = true;
                     //grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = true;
                     grabbedPumpkin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -39,8 +40,9 @@ public class PlayerInteraction : MonoBehaviour
 
                     // Set onto player
 
-                    grabbedPumpkin.transform.SetParent(transform);
-                    grabbedPumpkin.transform.localPosition = new Vector3(0,5,0);
+                    //grabbedPumpkin.transform.SetParent(transform, true);
+                    //grabbedPumpkin.transform.localScale = new Vector3(1/transform.localScale.x, 1/transform.localScale.y, 1);
+                    //grabbedPumpkin.transform.localPosition = new Vector3(0,5,0);
 
                     //offset by player size
                     
@@ -59,6 +61,9 @@ public class PlayerInteraction : MonoBehaviour
                 ThrowPumpkin();
             } 
         }
+        if (grabbedPumpkin != null){
+            grabbedPumpkin.transform.position = new Vector3(transform.position.x, transform.position.y + pumpkinOffset, 0);
+        }
     }
     private void ThrowPumpkin(){
         if(grabbedPumpkin != null){
@@ -67,7 +72,7 @@ public class PlayerInteraction : MonoBehaviour
             //grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = false;
             grabbedPumpkin.GetComponent<PolygonCollider2D>().enabled = true;
             // Removing parenting
-            grabbedPumpkin.transform.SetParent(null);
+            //grabbedPumpkin.transform.SetParent(null);
             // Set up throwing position
             offsetPos = (Vector2)transform.position + lastMoveDir.normalized * throwOffset;
             grabbedPumpkin.transform.position = offsetPos;

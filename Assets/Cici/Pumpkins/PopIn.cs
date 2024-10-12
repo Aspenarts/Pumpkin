@@ -5,8 +5,9 @@ using UnityEngine;
 public class PopIn : MonoBehaviour
 {
     public SpriteMask spritemask;
-    public float fadeTime = 0.25f;
-
+    public int interpolationFramesCount = 5; // Number of frames to completely interpolate between the 2 positions
+    
+    int elapsedFrames = 0;
     SpriteRenderer spriteRenderer;
     bool onScreen = false;
     Vector3 startScale;
@@ -20,18 +21,26 @@ public class PopIn : MonoBehaviour
 
     void FixedUpdate()
     {
+        float interpolationRatio = (float)elapsedFrames / interpolationFramesCount;
+
         if (onScreen)
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, new Color(1, 1, 1, 1), fadeTime);
-            transform.localScale = Vector3.Lerp(transform.localScale, startScale, fadeTime / 2);
-            spriteRenderer.sortingLayerName = "Default";
+            if (transform.localScale.x < startScale.x) {
+                spriteRenderer.color = Color.Lerp(new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), interpolationRatio);
+                transform.localScale = Vector3.Lerp(new Vector3(0, 0, 0), startScale, interpolationRatio);
+                spriteRenderer.sortingLayerName = "Default";
+            }
         }
         else
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, new Color(1, 1, 1, 0), fadeTime);
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), fadeTime / 2);
-            spriteRenderer.sortingLayerName = "BehindBG";
+            if (transform.localScale.x > 0) {
+                spriteRenderer.color = Color.Lerp(new Color(1, 1, 1, 1), new Color(1, 1, 1, 0), interpolationRatio);
+                transform.localScale = Vector3.Lerp(startScale, new Vector3(0, 0, 0), interpolationRatio);
+                spriteRenderer.sortingLayerName = "BehindBG";
+            }
         }
+
+        elapsedFrames = (elapsedFrames + 1) % (interpolationFramesCount + 1);  // reset elapsedFrames to zero after it reached (interpolationFramesCount + 1)
     }
 
     private void OnTriggerStay2D(Collider2D other) {

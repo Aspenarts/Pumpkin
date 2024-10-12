@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spritemask: {fileID: 4761058263551146207, guid: efeba0827166efc45997e57078841250, type: 3}
-  fadeTime: 0.5
+  interpolationFramesCount: 10
 --- !u!212 &6289154693692203027
 SpriteRenderer:
   m_ObjectHideFlags: 0

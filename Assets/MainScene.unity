@@ -648,8 +648,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1101267988450245394, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1821816821}
   m_SourcePrefab: {fileID: 100100000, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
+--- !u!1 &1821816812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1101267988450245394, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
+  m_PrefabInstance: {fileID: 1711460065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1821816821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821816812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f95ea066b5636346893fef48f3544ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritemask: {fileID: 0}
+  interpolationFramesCount: 45
 --- !u!4 &1875576383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4830597103513161857, guid: a50981754143741ac83aed07982c933a, type: 3}
