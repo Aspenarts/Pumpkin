@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/MainScene.unity
+    guid: 9db43434e541bfb4cb78368062ab7a09
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Madison/TimerScene.unity
+    guid: 289aac5ddec98cf468f02dd73e0adf68
+  - enabled: 1
+    path: Assets/Madison/GameOver.unity
+    guid: d90aaecbf8b71714f97b19e579038932
   m_configObjects: {}
