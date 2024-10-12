@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float pumpkinOffset = 2f;
-
+    [SerializeField] private float pumpkinOffset = 2f;
     [SerializeField] private float interactDistance = 1.5f;
     [SerializeField] private LayerMask layerToCheck;
     [SerializeField] private bool hasPumpkin = false;
@@ -28,13 +27,15 @@ public class PlayerInteraction : MonoBehaviour
         }
         rayCheck = Physics2D.Raycast(transform.position, lastMoveDir, interactDistance, layerToCheck);
         if(Input.GetKeyDown(KeyCode.E)){
-            if(rayCheck.collider != null){
+             if (hasPumpkin){
+                ThrowPumpkin();
+            } else if(rayCheck.collider != null){
                 // Cast ray to get pumpkin
                 grabbedPumpkin = rayCheck.collider.gameObject;
                 if(!hasPumpkin){
                     // Physics update when grabbed
                     grabbedPumpkin.GetComponent<Rigidbody2D>().isKinematic = true;
-                    //grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = true;
+                    grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = true;
                     grabbedPumpkin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     grabbedPumpkin.GetComponent<PolygonCollider2D>().enabled = false;
 
@@ -47,14 +48,11 @@ public class PlayerInteraction : MonoBehaviour
                     //offset by player size
                     
                     hasPumpkin = true;
-                    Debug.Log(grabbedPumpkin.transform);
                 }
                 else {
                     Debug.DrawRay(transform.position, lastMoveDir*interactDistance, Color.white);
                 }
-            } else if (hasPumpkin){
-                ThrowPumpkin();
-            } 
+            }
         } 
         if(Input.GetKeyDown(KeyCode.J)){
             if (hasPumpkin){
@@ -69,7 +67,7 @@ public class PlayerInteraction : MonoBehaviour
         if(grabbedPumpkin != null){
             // Physics update when dropped/thrown
             grabbedPumpkin.GetComponent<Rigidbody2D>().isKinematic = false;
-            //grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = false;
+            grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = false;
             grabbedPumpkin.GetComponent<PolygonCollider2D>().enabled = true;
             // Removing parenting
             //grabbedPumpkin.transform.SetParent(null);
