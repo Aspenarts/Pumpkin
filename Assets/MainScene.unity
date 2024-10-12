@@ -473,6 +473,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5509865592382411065, guid: a50981754143741ac83aed07982c933a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6195340223056365188, guid: a50981754143741ac83aed07982c933a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -502,6 +506,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2562081477266225133, guid: a50981754143741ac83aed07982c933a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1875576387}
+    - targetCorrespondingSourceObject: {fileID: 2562081477266225133, guid: a50981754143741ac83aed07982c933a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1875576390}
     - targetCorrespondingSourceObject: {fileID: 6820357446118926656, guid: a50981754143741ac83aed07982c933a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1930038226}
@@ -556,6 +563,11 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00017936641, y: -0.006225841}
   m_Size: {x: 1.0041672, y: 2.0269883}
   m_Direction: 1
+--- !u!331 &612042742 stripped
+SpriteMask:
+  m_CorrespondingSourceObject: {fileID: 4761058263551146207, guid: efeba0827166efc45997e57078841250, type: 3}
+  m_PrefabInstance: {fileID: 6225481760320260521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1031152364
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +696,14 @@ PrefabInstance:
       propertyPath: visionAngle
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7322193640483919077, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7322193640483919077, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2702852108177933009, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
       propertyPath: player
       value: 
@@ -691,7 +711,7 @@ PrefabInstance:
     - target: {fileID: -2702852108177933009, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
       propertyPath: pumpkin
       value: 
-      objectReference: {fileID: 5817990513682926427, guid: 3ca616048ce0f994e9902e47b8e47ba7, type: 3}
+      objectReference: {fileID: 5817990513682926427, guid: 6ef893f40e247354585a68425f700e98, type: 3}
     - target: {fileID: 1101267988450245394, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
       propertyPath: m_Name
       value: Goose
@@ -751,6 +771,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1101267988450245394, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1821816821}
+    - targetCorrespondingSourceObject: {fileID: 1101267988450245394, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1821816830}
   m_SourcePrefab: {fileID: 100100000, guid: fa6b5b54006bb854087f51b56d858b26, type: 3}
 --- !u!1 &1821816812 stripped
 GameObject:
@@ -769,8 +792,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f95ea066b5636346893fef48f3544ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spritemask: {fileID: 0}
+  spritemask: {fileID: 612042742}
   interpolationFramesCount: 45
+--- !u!58 &1821816830
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821816812}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.21
 --- !u!4 &1875576383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4830597103513161857, guid: a50981754143741ac83aed07982c933a, type: 3}
@@ -794,8 +852,53 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   hasPumpkin: 0
-  throwSpeed: 10
+  throwSpeed: 13
   throwOffset: 1.25
+--- !u!61 &1875576390
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565236959}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.010557175, y: 0.010558069}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.146248, y: 3.93509}
+  m_EdgeRadius: 0
 --- !u!1 &1930038224 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6820357446118926656, guid: a50981754143741ac83aed07982c933a, type: 3}
@@ -884,7 +987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startCount: 20
   background: {fileID: 460529928}
-  pumpkin: {fileID: 5817990513682926427, guid: 3ca616048ce0f994e9902e47b8e47ba7, type: 3}
+  pumpkin: {fileID: 5817990513682926427, guid: 6ef893f40e247354585a68425f700e98, type: 3}
 --- !u!4 &1933756010
 Transform:
   m_ObjectHideFlags: 0
