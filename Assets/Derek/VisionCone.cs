@@ -12,7 +12,7 @@ public class VisionCone : MonoBehaviour
         isFacingRight = facingRight;
     }
 
-    // Check if the player is within the vision cone
+    // Check if the target is within the vision cone
     public bool IsTargetInVision(GameObject target)
     {
         Vector3 directionToTarget = target.transform.position - transform.position;
@@ -32,16 +32,18 @@ public class VisionCone : MonoBehaviour
         // Convert the field of view angle to a dot product value for comparison
         float threshold = Mathf.Cos(visionAngle * 0.5f * Mathf.Deg2Rad);
 
-        // Check if the target is within the angle
-        if (dotProduct < threshold)
+        if (dotProduct >= threshold)
+        {
+            Debug.Log($"{target.name} is inside the vision cone!");
+            return true; // Target is within the vision cone
+        }
+        else
         {
             return false; // Target is outside the vision cone
         }
-
-        return true; // Target is within the vision cone
     }
 
-    // Draw the vision cone in the Scene View for visualization
+    // Visualize the vision cone and detected objects in the Scene View
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

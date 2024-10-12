@@ -11,15 +11,15 @@ public class PatrolState : State
     public float speed = 10f;
     public float patrolRadius = 50f; // Patrol radius for random roaming
     private GameObject player; // Reference to the player
-    private GameObject pumpkin;
+    private List<GameObject> pumpkins;
     private VisionCone visionCone; // Reference to the VisionCone component
 
-    public PatrolState(GameObject owner, GameObject player, GameObject pumpkin) : base(owner)
+    public PatrolState(GameObject owner, GameObject player, List<GameObject> pumpkins) : base(owner)
     {
         seeker = owner.GetComponent<Seeker>();
         rb = owner.GetComponent<Rigidbody2D>();
         this.player = player; // Assign the player reference
-        this.pumpkin = pumpkin;
+        this.pumpkins = pumpkins;
         this.visionCone = owner.GetComponent<VisionCone>(); // Get the vision cone component
     }
 
@@ -70,10 +70,10 @@ public class PatrolState : State
     {
         // Return both PlayerSpottedTransition and PumpkinSpottedTransition
         return new List<Transition>
-    {
-        new PlayerSpottedTransition(owner, player),
-        new PumpkinSpottedTransition(owner, pumpkin)
-    };
+        {
+            new PlayerSpottedTransition(owner, player),
+            new PumpkinSpottedTransition(owner, pumpkins) // Pass the list of pumpkins
+        };
     }
 
 
