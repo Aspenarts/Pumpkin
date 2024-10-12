@@ -78,8 +78,9 @@ public class PlayerMovement : MonoBehaviour
             //do something to hinder player velocity
             if (issprinting == false)
             {
+
                 //print("not spritning");
-                //rb.velocity = new Vector2(0, 0);
+                rb.velocity = new Vector2(0, 0);
             }
             else
             {
@@ -109,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         {
             
             
-            hidesprite.gameObject.transform.Rotate(rotationdirection * 0.2f);
+            hidesprite.gameObject.transform.Rotate(rotationdirection * 1f);
         }
        
 

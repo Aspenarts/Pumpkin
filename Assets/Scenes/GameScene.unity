@@ -279,6 +279,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 533211821703556070, guid: a50981754143741ac83aed07982c933a, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533211821703556070, guid: a50981754143741ac83aed07982c933a, type: 3}
+      propertyPath: rollmod
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 533211821703556070, guid: a50981754143741ac83aed07982c933a, type: 3}
+      propertyPath: sprintmod
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2562081477266225133, guid: a50981754143741ac83aed07982c933a, type: 3}
       propertyPath: m_Name
       value: Player

@@ -29,16 +29,23 @@ public class PlayerInteraction : MonoBehaviour
             if(rayCheck.collider != null){
                 // Cast ray to get pumpkin
                 grabbedPumpkin = rayCheck.collider.gameObject;
-                if(!hasPumpkin){  
+                if(!hasPumpkin){
                     // Physics update when grabbed
+                    
                     grabbedPumpkin.GetComponent<Rigidbody2D>().isKinematic = true;
-                    grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = true;
+                    //grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = true;
                     grabbedPumpkin.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     grabbedPumpkin.GetComponent<PolygonCollider2D>().enabled = false;
+
                     // Set onto player
-                    grabbedPumpkin.transform.position = transform.position;
+
                     grabbedPumpkin.transform.SetParent(transform);
+                    grabbedPumpkin.transform.localPosition = new Vector3(0,5,0);
+
+                    //offset by player size
+                    
                     hasPumpkin = true;
+                    Debug.Log(grabbedPumpkin.transform);
                 }
                 else {
                     Debug.DrawRay(transform.position, lastMoveDir*interactDistance, Color.white);
@@ -57,7 +64,7 @@ public class PlayerInteraction : MonoBehaviour
         if(grabbedPumpkin != null){
             // Physics update when dropped/thrown
             grabbedPumpkin.GetComponent<Rigidbody2D>().isKinematic = false;
-            grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = false;
+            //grabbedPumpkin.GetComponent<Rigidbody2D>().freezeRotation = false;
             grabbedPumpkin.GetComponent<PolygonCollider2D>().enabled = true;
             // Removing parenting
             grabbedPumpkin.transform.SetParent(null);

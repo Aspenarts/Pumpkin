@@ -82,7 +82,7 @@ public class AttackState : State
 
     private void MoveToPlayer()
     {
-        // Request a path to the player’s current position
+        // Request a path to the playerï¿½s current position
         seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
     }
 
@@ -103,7 +103,7 @@ public class AttackState : State
     private void AttackPlayer()
     {
         // Perform the attack (play animation, reduce health, etc.)
-        Debug.Log("Goose attacks the player!");
+       // Debug.Log("Goose attacks the player!");
         // Add your attack logic here (e.g., destroy the player object or reduce health)
     }
 }
